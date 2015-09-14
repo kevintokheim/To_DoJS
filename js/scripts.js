@@ -1,12 +1,4 @@
 $(document).ready(function(){
-  // $("add-task").click(function() {
-  //   $("#new-tasks").append('<div class = "new-task-name">' +
-  //   'div class = "form-group">' +
-  //   '<label for = "new-task-name">Task Description:</label>' +
-  //   '<input type = "text" class = "form-control new-task-name" id = "new-task-name">'
-  //   '</div>' +
-  //   '</div>');
-  // });
 
   $("form#new-task").submit(function(event) {
     event.preventDefault();
@@ -15,13 +7,14 @@ $(document).ready(function(){
 
     var newTask = {taskName: inputtedTask};
 
-    $("div#left-well").append("<li><span class = 'task'>" + newTask.taskName + "</span></li>");
+    $("div#left-well").append("<li><span class = 'task'>" + newTask.taskName +
+      "<br/><input type='button' class='btn btn-sm btn-danger task-complete' value='Complete Task'></span></li>");
 
-    $(".task").last().click(function() {
-      $("#show-tasks").show();
-
-      $("$show-tasks h2").text(newTask.taskName);
+    $("input[type=button]").click(function() {
+      $(this).parent().parent().appendTo("#right-well");
+      $(this).remove();
     });
+
     $("input#new-task-name").val("");
   });
 });
